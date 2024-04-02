@@ -1,5 +1,6 @@
 package com.javier1nc.bullseye
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,6 +24,8 @@ import com.javier1nc.bullseye.ui.theme.BullseyeTheme
 
 @Composable
 fun GameScreen(){
+    var alertIsVisible: Boolean = false
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement =  Arrangement.Center,
@@ -58,11 +61,18 @@ fun GameScreen(){
                     modifier = Modifier.padding(end = 16.dp)
                 )
             }
-            Button(onClick = { }) {
+            Button(onClick = {
+                alertIsVisible = true
+                Log.i("ALERT VISIBLE?", alertIsVisible.toString())
+            }) {
                 Text(text = stringResource(R.string.hit_me_button_text))
             }
         }
         Spacer(modifier = Modifier.weight(0.5f))
+        
+        if (alertIsVisible) {
+            Text(text = "This is an alert")
+        }
     }
 }
 
